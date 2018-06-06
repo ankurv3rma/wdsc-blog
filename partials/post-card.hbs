@@ -1,0 +1,65 @@
+{{#has tag="#default"}}
+{{!-- If the post is tagged with #cover, use special template --}}
+
+    <article class="post-card {{post_class}}{{#unless feature_image}} no-image{{/unless}}">
+
+        {{#if feature_image}}
+            <a class="post-card-image-link" href="{{url}}">
+                <div class="post-card-image" style="background-image: url({{feature_image}})"></div>
+            </a>
+        {{/if}}
+
+        <div class="post-card-content">
+
+            <a class="post-card-content-link" href="{{url}}">
+                <header class="post-card-header">
+                    {{#if primary_tag}}
+                        <span class="post-card-tags">{{primary_tag.name}}</span>
+                    {{/if}}
+                    <h1 class="post-card-title">{{title}}</h1>
+                </header>
+                <div class="post-card-excerpt">
+                    <p>{{excerpt}}</p>
+                </div>
+            </a>
+
+            <footer class="post-card-meta">
+                {{> "components/author-list"}}
+                <span class="reading-time">{{reading_time}}</span>
+            </footer>
+
+        </div>
+
+    </article>
+
+{{else}}
+{{!-- Otherwise use the regular template for all other cards --}}
+
+    <article class="post-card tag-hash-cover {{post_class}}{{#unless feature_image}} no-image{{else}}"{{/unless}}>
+        <div class="post-card-feature-image" style="background-image: url({{feature_image}})"></div>
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="{{url}}">
+                <header class="post-card-header">
+                    <div class="post-card-date">
+                      <time class="date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD"}}</time>
+                      <time class="month" datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM 'YY"}}</time>
+                    </div>
+                    {{#if primary_tag}}
+                        <span class="post-card-tags">{{primary_tag.name}}</span>
+                    {{/if}}
+                    <h1 class="post-card-title">{{title}}</h1>
+                </header>
+                <div class="post-card-excerpt">
+                    <p>{{excerpt}}</p>
+                </div>
+            </a>
+
+            <footer class="post-card-meta">
+                {{> "components/author-list"}}
+                <span class="reading-time">{{reading_time}}</span>
+            </footer>
+
+        </div>
+    </article>
+
+{{/has}}
